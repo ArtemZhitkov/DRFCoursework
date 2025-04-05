@@ -12,6 +12,7 @@ psycopg2 = "^2.9.10"
 dotenv = "^0.9.9"
 black = "^25.1.0"
 pillow = "^11.1.0"
+djangorestframework = "^3.16.0"
 
 
 [build-system]
