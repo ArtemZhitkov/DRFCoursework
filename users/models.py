@@ -9,8 +9,8 @@ class User(AbstractUser):
     )
     city = models.CharField(
         max_length=20,
-        verbose_name="Телефон",
-        help_text="Введите номер телефона",
+        verbose_name="Город",
+        help_text="Введите город проживания",
         blank=True,
         null=True,
     )
