@@ -22,7 +22,7 @@ class User(AbstractUser):
         verbose_name="Chat-ID Telegram",
         help_text="Введите Chat-ID Telegram",
         blank=True,
-        null=True
+        null=True,
     )
 
     USERNAME_FIELD = "email"

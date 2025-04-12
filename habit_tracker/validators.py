@@ -11,8 +11,8 @@ class AssociatedWithoutRewardValidator:
     def __call__(self, instance):
         if instance.get(self.field1) and instance.get(self.field2):
             raise ValidationError(
-                f"Выбрана связанная привычка и указано вознаграждение."
-                f"Укажите либо связанную привычку, либо укажите вознаграждение."
+                "Выбрана связанная привычка и указано вознаграждение."
+                "Укажите либо связанную привычку, либо укажите вознаграждение."
             )
 
 
@@ -28,7 +28,7 @@ class TimeToCompleteValidator:
         if instance.get(self.field1):
             if instance.get(self.field1) > self.duration:
                 raise ValidationError(
-                    f"Указанное время на выполнение привычки превышает 120 секунд."
+                    "Указанное время на выполнение привычки превышает 120 секунд."
                 )
 
 
@@ -43,7 +43,7 @@ class PleasantHabitRelatedValidator:
         if instance.get(self.field1):
             if not instance.get(self.field2):
                 raise ValidationError(
-                    f"У связанной привычки должен быть указан признак приятной привычки."
+                    "У связанной привычки должен быть указан признак приятной привычки."
                 )
 
 
@@ -59,7 +59,7 @@ class PleasantHabitWithoutReward:
         if instance.get(self.field1):
             if instance.get(self.field2) or instance.get(self.field3):
                 raise ValidationError(
-                    f"У приятной привычки не может быть вознаграждения или связанной привычки."
+                    "У приятной привычки не может быть вознаграждения или связанной привычки."
                 )
 
 
@@ -74,5 +74,5 @@ class PeriodicityValidator:
         if periodicity:
             if periodicity > 7:
                 raise ValidationError(
-                    f"Нельзя выполнять привычку реже, чем 1 раз в 7 дней."
+                    "Нельзя выполнять привычку реже, чем 1 раз в 7 дней."
                 )

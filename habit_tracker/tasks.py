@@ -13,7 +13,9 @@ def telegram_notification():
     zone = pytz.timezone(settings.TIME_ZONE)
     current_time = datetime.now(zone)
     current_time_less = current_time - timedelta(minutes=5)
-    habits = Habit.objects.filter(time__lte=current_time.time(), time__gte=current_time_less.time())
+    habits = Habit.objects.filter(
+        time__lte=current_time.time(), time__gte=current_time_less.time()
+    )
     for habit in habits:
         user_tg = habit.user.tg_chat_id
         if user_tg:
