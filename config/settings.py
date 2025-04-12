@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "drf_yasg",
     "corsheaders",
+    "django_celery_beat",
 
     "habit_tracker",
     "users",
@@ -130,3 +131,19 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+
+
+CELERY_BEAT_SCHEDULE = {
+    "send_information": {
+        "task": "habit_tracker.tasks.telegram_notification",
+        "schedule": timedelta(minutes=1),
+    },
+}
