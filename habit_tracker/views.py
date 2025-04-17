@@ -24,8 +24,7 @@ class HabitListAPIView(generics.ListAPIView):
     pagination_class = MyPagination
 
     def get_queryset(self):
-        if IsOwner():
-            return self.queryset.filter(user=self.request.user)
+        return self.queryset.filter(user=self.request.user)
 
 
 class PublishedHabitListAPIView(generics.ListAPIView):
