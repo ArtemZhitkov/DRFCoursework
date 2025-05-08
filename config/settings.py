@@ -1,4 +1,5 @@
 import os
+import sys
 
 from datetime import timedelta
 
@@ -16,7 +17,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = True if os.getenv("DEBUG") else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -66,17 +67,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("NAME"),
-        "USER": os.getenv("USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
-        "HOST": os.getenv("HOST"),
-        "PORT": os.getenv("PORT"),
+if "test" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "POSTGRES_DB": os.getenv("POSTGRES_DB"),
+            "POSTGRES_USER": os.getenv("POSTGRES_USER"),
+            "POSTGRES_PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "POSTGRES_HOST": os.getenv("POSTGRES_HOST"),
+            "POSTGRES_PORT": os.getenv("POSTGRES_PORT"),
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -104,8 +112,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = "static/"
-
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
