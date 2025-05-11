@@ -18,7 +18,6 @@ COPY . .
 
 RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
 
-RUN ls -la /app
 
 EXPOSE 8000
 
