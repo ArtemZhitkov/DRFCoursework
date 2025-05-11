@@ -1,7 +1,7 @@
 services:
   app:
     image: artemzhitkov/habit_tracker:latest
-    command: sh -c "python manage.py collectstatic --no-input && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
 
     volumes:
       - .:/app
