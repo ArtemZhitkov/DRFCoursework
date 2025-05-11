@@ -11,7 +11,6 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 
@@ -158,4 +157,4 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": timedelta(days=1),
     },
 }
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://158.160.179.64"]
