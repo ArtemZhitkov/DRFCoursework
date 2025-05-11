@@ -1,12 +1,20 @@
-# Проект бэкенд части SPA веб-приложения треекер "Полезных привычек"
-
+# Проект бэкенд части SPA веб-приложения трекер "Полезных привычек"
+Приложение доступно по адресу: http://158.160.179.64
 ----
-## Установка
+
+## Настроен процесс CI/CD с использованием GitHub Actions.
+### Для автоматического деплоя потребуется:
+* Клонируйте проект в свой репозиторий
+* Настройте секреты Github: DOCKER_HUB_USERNAME, DOCKER_HUB_ACCESS_TOKEN, ENV_FILE, SERVER_IP, SSH_USER, SSH_KEY(приватный ключ), DEPLOY_DIR, 
+* На удаленном сервере потребуется установить Docker, Docker compose
+* Сделайте коммит, запустится workflow c проверкой линтерами, тестами, сборкой образов и деплоем приложения на сервер
+* Приложение будет доступно по IP-адресу Вашего сервера
+## Установка с Docker:
 
 * Клонируйте репозиторий
 
 ```bash
-  https://github.com/ArtemZhitkov/DRFCoursework.git
+  https://github.com/ArtemZhitkov/habit_tracker.git
   ```
 
 * Установите зависимости
@@ -18,9 +26,28 @@
 ## Запуск
 
 ```bash
-  python manage.py runserver
+  docker-compose up -d 
 ```
+* Приложение доступно по адресу: http://127.0.0.1
+## Установка без Docker:
 
+* Клонируйте репозиторий
+
+```bash
+  https://github.com/ArtemZhitkov/habit_tracker.git
+  ```
+
+* Установите зависимости
+
+```bash
+   poetry install
+```
+* Заполните файл .env.sample
+## Запуск
+
+```bash
+  python manage.py runserver 
+```
 # Структура проекта:
 ## Описаны модели для пользователей (Users),
 ### Привычка:
