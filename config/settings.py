@@ -78,11 +78,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "POSTGRES_DB": os.getenv("POSTGRES_DB"),
-            "POSTGRES_USER": os.getenv("POSTGRES_USER"),
-            "POSTGRES_PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-            "POSTGRES_HOST": os.getenv("POSTGRES_HOST"),
-            "POSTGRES_PORT": os.getenv("POSTGRES_PORT"),
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": os.getenv("POSTGRES_HOST"),
+            "PORT": os.getenv("POSTGRES_PORT"),
         }
     }
 
@@ -155,6 +155,7 @@ TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 CELERY_BEAT_SCHEDULE = {
     "send_information": {
         "task": "habit_tracker.tasks.telegram_notification",
-        "schedule": timedelta(minutes=1),
+        "schedule": timedelta(days=1),
     },
 }
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1"]
